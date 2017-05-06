@@ -1,0 +1,78 @@
+<template>
+  <section class="page_wapper">
+    <div class="top_wapper clearfix">
+      <div class="fl slogan_wapper">
+        <h1>lucky zone</h1>
+        <h2>关于陆晨凯</h2>
+      </div>
+      <div class="fr menu_wapper mr20 mt10">
+        <ul>
+           <UnderLine text='W·工作经验'></UnderLine>
+           <UnderLine text='P·项目经验'></UnderLine>
+           <UnderLine text='S·自我评价'></UnderLine>
+        </ul>
+      </div>
+    </div>
+    <div class="bottom_wapper">
+      <JumpLine :data="indexShowTxt"></JumpLine>
+    </div>
+  </section>
+</template>
+
+<script>
+
+import UnderLine from './components/UnderLine'
+import JumpLine from './components/JumpLine'
+
+export default {
+  data () {
+    return {
+      indexShowTxt: [{
+        firstLine:"喜欢",
+        secondLine:"迪丽热巴"
+      },
+      {
+        firstLine:"I write",
+        secondLine:"javascript"
+      }]
+    }
+  },
+  components: {
+    UnderLine,
+    JumpLine
+  }
+}
+</script>
+
+<style scoped>
+.slogan_wapper h1{
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 700;
+    font-size: 3.5rem;
+    margin: 15px 15px 5px 15px
+}
+.slogan_wapper h2{
+     color: white;
+    letter-spacing: 35px;
+    margin: 0 15px;
+    font-size: 1.5rem;
+    font-weight: normal;
+}
+.menu_wapper ul li{
+  height: 50px;
+  color: white;
+  display: inline-block;
+  font-size: 1.5rem;
+  letter-spacing: 5px;
+  text-indent: 5px;
+  margin-left: 20px
+}
+.bottom_wapper{
+  position: absolute;
+  bottom: 20px;
+  right: 30px
+}
+
+</style>

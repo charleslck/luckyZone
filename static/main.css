@@ -1,0 +1,12 @@
+html, body
+{
+  letter-spacing: 0.5px;
+  font-family: "Source Sans Pro", Arial, sans-serif;
+  margin: 0;
+  font-size: 62.5%;
+}
+
+.page_wapper{
+  background-color: #141414;
+  height: 100vh 
+}
