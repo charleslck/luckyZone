@@ -54,14 +54,16 @@ export default {
     }
   },
   mounted(){
-    console.log(this.lineWidth)
-    this.jumpInOne()
-    let self = this
-    setTimeout(function(){
-      self.jumpInTwo()
-    },800)
+    this.init()
   },
   methods: {
+    init(){
+      let self = this
+      self.jumpInOne()
+      setTimeout(function(){
+        self.jumpInTwo()
+      },800)
+    },
     jumpInOne(back){
       this.lineWidth.one = 0
       let self = this;

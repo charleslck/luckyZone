@@ -3,6 +3,7 @@ html, body
   letter-spacing: 0.5px;
   font-family: "Source Sans Pro", Arial, sans-serif;
   margin: 0;
+  overflow: hidden;
   font-size: 62.5%;
 }
 

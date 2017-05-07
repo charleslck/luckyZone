@@ -16,6 +16,7 @@
     <div class="bottom_wapper">
       <JumpLine :data="indexShowTxt"></JumpLine>
     </div>
+    <Shapes></Shapes>
   </section>
 </template>
 
@@ -23,6 +24,7 @@
 
 import UnderLine from './components/UnderLine'
 import JumpLine from './components/JumpLine'
+import Shapes from './components/ShapesCanvas'
 
 export default {
   data () {
@@ -32,26 +34,49 @@ export default {
         secondLine:"迪丽热巴"
       },
       {
-        firstLine:"I write",
+        firstLine:"精通",
         secondLine:"javascript"
+      },
+      {
+        firstLine:"精通",
+        secondLine:"vuejs jquery"
+      },
+      {
+        firstLine:"熟练使用",
+        secondLine:"agjs r-n r-web"
+      },
+      {
+        firstLine:"掌握",
+        secondLine:"reactjs"
       }]
     }
   },
   components: {
     UnderLine,
-    JumpLine
+    JumpLine,
+    Shapes
+  },
+  methods: {
+    
   }
 }
 </script>
 
 <style scoped>
+.top_wapper{
+  position: relative;
+  z-index: 10
+}
+.slogan_wapper{
+  background: #141414
+}
 .slogan_wapper h1{
     color: white;
     text-transform: uppercase;
     letter-spacing: 3px;
     font-weight: 700;
     font-size: 3.5rem;
-    margin: 15px 15px 5px 15px
+    margin: 15px 15px 5px 15px;
 }
 .slogan_wapper h2{
      color: white;
@@ -72,7 +97,8 @@ export default {
 .bottom_wapper{
   position: absolute;
   bottom: 20px;
-  right: 30px
+  right: 30px;
+  z-index: 10
 }
 
 </style>
