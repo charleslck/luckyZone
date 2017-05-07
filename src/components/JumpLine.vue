@@ -1,5 +1,9 @@
 <template>
   <div class="bottom">
+ <!--    <div style="font-size:12px">
+      <div v-if="!stopFlag" @click="stop">stop</div>
+      <div v-if="stopState" @click="start">start</div>
+    </div> -->
     <div>
     <div style="font-size:12px">
     </div>
@@ -22,7 +26,7 @@ export default {
   data () {
     return {
       lineWidth:{
-        textOne :'welcome',
+        textOne :'姓名',
         one: 0,
         fadeInOne:false,
         oneDereciton: 'left',
@@ -30,7 +34,7 @@ export default {
           timerGoRight: '',
           timerGoLeft: ''
         },
-        textTwo :" to lucky zone",
+        textTwo :"lu chen kai",
         two: 0,
         fadeInTwo:false,
         twoDereciton: 'left',
@@ -43,8 +47,10 @@ export default {
           two:0
         }
       },
+      stopFlag:false,
+      stopState:false,
       speed : 1,
-      waitingTime: 0.8//seconds
+      waitingTime: 1//seconds
     }
   },
   props: {
@@ -53,15 +59,44 @@ export default {
       default: []
     }
   },
+  watch: {
+    stopState: function (stopState) {
+      if(stopState){
+        let self = this
+        let timer_temp = setTimeout(function(){
+            self.start()
+            clearTimeout(timer_temp)
+        },self.waitingTime * 3000)
+      }
+    }
+  },
   mounted(){
-    this.init()
+    let self = this
+    setInterval(function(){
+      self.stop()
+    },60 * 1000)
+    this.init(true)
   },
   methods: {
-    init(){
+    start(){
+      this.init(false)
+    },
+    stop(){
+      this.stopFlag = true
+    },
+    init(firstRun){
       let self = this
-      self.jumpInOne()
-      setTimeout(function(){
+      if(!firstRun){
+        this.stopFlag = false
+        this.stopState = false
+      }
+      let timer_temp_one = setTimeout(function(){
+        self.jumpInOne()
+        clearTimeout(timer_temp_one)
+      },200)
+      let timer_temp_two = setTimeout(function(){
         self.jumpInTwo()
+        clearTimeout(timer_temp_two)
       },800)
     },
     jumpInOne(back){
@@ -72,19 +107,15 @@ export default {
           self.lineWidth.one += 2
         }else{
           clearInterval(self.lineWidth.timerOne.timerGoRight)
-          setTimeout(function(){
+          let timer_temp_two = setTimeout(function(){
             if(back == 'back'){
               self.lineWidth.fadeInOne = false
-            }else{
-              self.lineWidth.fadeInOne = true
-            }
-          },self.waitingTime * 500)
-          setTimeout(function(){
-            if(back == 'back'){
               self.jumpOutOne('back')
             }else{
+              self.lineWidth.fadeInOne = true
               self.jumpOutOne()
             }
+            clearTimeout(timer_temp_two)
           },self.waitingTime * 1000)
         }
       },this.speed)
@@ -102,15 +133,21 @@ export default {
         }else{
           clearInterval(self.lineWidth.timerOne.timerGoLeft)
           if(back == 'back'){
-             self.lineWidth.round.one ++   
-             self.changeData(1)         
-             setTimeout(function(){
-              self.lineWidth.fadeInOne = true
-              self.jumpInOne()
-            },self.waitingTime * 3000)
+                if(!self.stopFlag){
+                   self.lineWidth.round.one ++
+                   let timer_temp = setTimeout(function(){
+                    self.changeData(1) 
+                    self.lineWidth.fadeInOne = true
+                    self.jumpInOne()
+                    clearTimeout(timer_temp)
+                  },self.waitingTime * 3000)
+                 }else{
+                   console.log('over1')
+                 }
           }else{
-            setTimeout(function(){
+            let timer_temp = setTimeout(function(){
               self.jumpInOne('back')
+              clearTimeout(timer_temp)
             },self.waitingTime * 3000)
           }
         }
@@ -124,19 +161,15 @@ export default {
           self.lineWidth.two += 2
         }else{
           clearInterval(self.lineWidth.timerTwo.timerGoRight)
-          setTimeout(function(){
+          let timer_temp_two = setTimeout(function(){
             if(back == 'back'){
               self.lineWidth.fadeInTwo = false
-            }else{
-              self.lineWidth.fadeInTwo = true
-            }
-          },self.waitingTime * 500)
-          setTimeout(function(){
-            if(back == 'back'){
               self.jumpOutTwo('back')
             }else{
+              self.lineWidth.fadeInTwo = true
               self.jumpOutTwo()
             }
+            clearTimeout(timer_temp_two)
           },self.waitingTime * 1000)
         }
       },this.speed)
@@ -154,15 +187,22 @@ export default {
         }else{
           clearInterval(self.lineWidth.timerTwo.timerGoLeft)
           if(back == 'back'){
-             self.lineWidth.round.two ++
-             self.changeData(2)       
-             setTimeout(function(){
-              self.lineWidth.fadeInTwo = true
-              self.jumpInTwo()
-            },self.waitingTime * 3000)
+            if(!self.stopFlag){
+               self.lineWidth.round.two ++
+               let timer_temp = setTimeout(function(){
+                self.changeData(2)  
+                self.lineWidth.fadeInTwo = true
+                self.jumpInTwo()
+                clearTimeout(timer_temp)
+              },self.waitingTime * 3000)
+             }else{
+              console.log('over2')
+              self.stopState = true
+             }
           }else{
-            setTimeout(function(){
+            let timer_temp =  setTimeout(function(){
               self.jumpInTwo('back')
+              clearTimeout(timer_temp)
             },self.waitingTime * 3000)
           }
         }

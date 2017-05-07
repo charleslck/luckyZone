@@ -7,16 +7,17 @@
       </div>
       <div class="fr menu_wapper mr20 mt10">
         <ul>
-           <UnderLine text='W·工作经验'></UnderLine>
-           <UnderLine text='P·项目经验'></UnderLine>
-           <UnderLine text='S·自我评价'></UnderLine>
+           <UnderLine text='W·工作经验' @click.native="enent_w"></UnderLine>
+           <UnderLine text='P·项目经验' @click.native="enent_p"></UnderLine>
+           <UnderLine text='S·自我评价' @click.native="enent_s"></UnderLine>
         </ul>
       </div>
     </div>
     <div class="bottom_wapper">
       <JumpLine :data="indexShowTxt"></JumpLine>
     </div>
-    <Shapes></Shapes>
+    <Shapes :colorData="colorArry"></Shapes>
+    <Loading :loadingState="loadingState"></Loading>
   </section>
 </template>
 
@@ -25,6 +26,7 @@
 import UnderLine from './components/UnderLine'
 import JumpLine from './components/JumpLine'
 import Shapes from './components/ShapesCanvas'
+import Loading from './components/Loading'
 
 export default {
   data () {
@@ -48,16 +50,33 @@ export default {
       {
         firstLine:"掌握",
         secondLine:"reactjs"
-      }]
+      }],
+      colorArry:['RGBA(184, 247, 136, .6)','RGBA(88, 210, 232, .6)','RGBA(244, 67, 54, .6)','RGBA(114, 109, 209, .6)','RGBA(230, 16, 155, .6)','RGBA(245, 164, 51, .6)','RGBA(0, 60, 255, .6)'],
+      loadingState:true
     }
   },
   components: {
     UnderLine,
     JumpLine,
-    Shapes
+    Shapes,
+    Loading
+  },
+  mounted(){
+    let self = this
+    setInterval(function(){
+      self.loadingState = false
+    },1000)
   },
   methods: {
-    
+    enent_w(){
+      console.log('w')
+    },
+    enent_p(){
+      console.log('p')
+    },
+    enent_s(){
+      console.log('s')
+    }
   }
 }
 </script>
