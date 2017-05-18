@@ -5,19 +5,20 @@
         <h1>lucky zone</h1>
         <h2>关于陆晨凯</h2>
       </div>
-      <div class="fr menu_wapper mr20 mt10">
+     <!--  <div class="fr menu_wapper mr20 mt10">
         <ul>
            <UnderLine text='W·工作经验' @click.native="enent_w"></UnderLine>
            <UnderLine text='P·项目经验' @click.native="enent_p"></UnderLine>
            <UnderLine text='S·自我评价' @click.native="enent_s"></UnderLine>
         </ul>
-      </div>
+      </div> -->
     </div>
     <div class="bottom_wapper">
       <JumpLine :data="indexShowTxt"></JumpLine>
     </div>
     <Shapes :colorData="colorArry"></Shapes>
     <Loading :loadingState="loadingState"></Loading>
+    <Timeline :timeLineState="timeLineState"></Timeline>
   </section>
 </template>
 
@@ -27,6 +28,7 @@ import UnderLine from './components/UnderLine'
 import JumpLine from './components/JumpLine'
 import Shapes from './components/ShapesCanvas'
 import Loading from './components/Loading'
+import Timeline from './components/Timeline'
 
 export default {
   data () {
@@ -41,35 +43,34 @@ export default {
       },
       {
         firstLine:"精通",
-        secondLine:"vuejs jquery"
+        secondLine:"vue react"
       },
       {
-        firstLine:"熟练使用",
-        secondLine:"agjs r-n r-web"
-      },
-      {
-        firstLine:"掌握",
-        secondLine:"reactjs"
+        firstLine:"前端设计师",
+        secondLine:"Frontend Designer"
       }],
-      colorArry:['RGBA(184, 247, 136, .6)','RGBA(88, 210, 232, .6)','RGBA(244, 67, 54, .6)','RGBA(114, 109, 209, .6)','RGBA(230, 16, 155, .6)','RGBA(245, 164, 51, .6)','RGBA(0, 60, 255, .6)'],
-      loadingState:true
+      colorArry:['RGBA(255, 255, 255, .1)','RGBA(255, 255, 255, .2)','RGBA(255, 255, 255, .3)','RGBA(255, 255, 255, .4)','RGBA(255, 255, 255, .5)','RGBA(255, 255, 255, .6)','RGBA(255, 255, 255, .7)','RGBA(60, 174, 108, 1.00)','RGBA(193, 0, 39, 1.00)'],
+      loadingState:true,
+      timeLineState:false
     }
   },
   components: {
     UnderLine,
     JumpLine,
     Shapes,
-    Loading
+    Loading,
+    Timeline
   },
   mounted(){
     let self = this
-    setInterval(function(){
+    setTimeout(function(){
       self.loadingState = false
     },1000)
   },
   methods: {
     enent_w(){
       console.log('w')
+      this.$router.push('/work')
     },
     enent_p(){
       console.log('p')

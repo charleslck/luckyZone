@@ -5,8 +5,6 @@
       <div v-if="stopState" @click="start">start</div>
     </div> -->
     <div>
-    <div style="font-size:12px">
-    </div>
       <div class="line_all line_one">
           <h3 :class="{ fadeIn: lineWidth.fadeInOne , fadeOut: !lineWidth.fadeInOne}" :style="{opacity: !lineWidth.fadeInOne?0:1}">{{lineWidth.textOne}}</h3>
           <div class="line" :style="{width: lineWidth.one + '%', float: lineWidth.oneDereciton}"></div>
@@ -50,7 +48,7 @@ export default {
       stopFlag:false,
       stopState:false,
       speed : 1,
-      waitingTime: 1//seconds
+      waitingTime: 0.9//seconds
     }
   },
   props: {
@@ -66,7 +64,7 @@ export default {
         let timer_temp = setTimeout(function(){
             self.start()
             clearTimeout(timer_temp)
-        },self.waitingTime * 3000)
+        },self.waitingTime * 5000)
       }
     }
   },
@@ -74,7 +72,8 @@ export default {
     let self = this
     setInterval(function(){
       self.stop()
-    },60 * 1000)
+      console.log("re")
+    },20 * 1000)
     this.init(true)
   },
   methods: {
@@ -95,6 +94,7 @@ export default {
         clearTimeout(timer_temp_one)
       },200)
       let timer_temp_two = setTimeout(function(){
+         // self.jumpInOne()
         self.jumpInTwo()
         clearTimeout(timer_temp_two)
       },800)
